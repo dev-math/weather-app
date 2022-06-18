@@ -5,17 +5,26 @@ const ipstack = require('./utils/ipstack');
 
 const app = express();
 
-const PUBLIC_FOLDER = path.join(__dirname, '../public');
+app.set('view engine', 'hbs'); // setup handlebars engine
 
-app.use(express.static(PUBLIC_FOLDER));
+// static directory to serve
+const PUBLIC_FOLDER = path.join(__dirname, '../public');
+app.use(express.static(PUBLIC_FOLDER)); 
 
 app.get('/', (_req, res) => {
-  res.sendFile(path.join(__dirname, '../index.html'));
+  ipstack((err, { latitude, longitude } = {}) => {
+    if (err) {
+      return res.send({ err });
+    }
 
-  ipstack((data) => {
-    console.log(data);
+    forecast(latitude, longitude, (_err, data) => {
+      if (err) {
+        return res.send({ err });
+      }
+
+      res.render('index', data);
+    });
   });
-
 });
 
 app.listen(8080, () => {
