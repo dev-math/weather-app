@@ -4,6 +4,7 @@ const express = require('express');
 const app = express();
 
 const PUBLIC_FOLDER = path.join(__dirname, '../public');
+
 app.use(express.static(PUBLIC_FOLDER));
 
 app.get('/', (_req, res) => {
