@@ -2,6 +2,7 @@ const path = require('path');
 const express = require('express');
 const forecast = require('./utils/forecast');
 const ipstack = require('./utils/ipstack');
+const places = require('./utils/places');
 
 const app = express();
 
@@ -9,7 +10,7 @@ app.set('view engine', 'hbs'); // setup handlebars engine
 
 // static directory to serve
 const PUBLIC_FOLDER = path.join(__dirname, '../public');
-app.use(express.static(PUBLIC_FOLDER)); 
+app.use(express.static(PUBLIC_FOLDER));
 
 app.get('/', (_req, res) => {
   ipstack((err, { latitude, longitude } = {}) => {
@@ -17,12 +18,14 @@ app.get('/', (_req, res) => {
       return res.send({ err });
     }
 
-    forecast(latitude, longitude, (_err, data) => {
+    forecast(latitude, longitude, (err, forecastData) => {
       if (err) {
         return res.send({ err });
       }
 
-      res.render('index', data);
+      places(`${forecastData.location.region} ${forecastData.location.country}`, (err, data) => {
+        res.render('index', { ...forecastData, image: data });
+      });
     });
   });
 });

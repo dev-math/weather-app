@@ -24,6 +24,6 @@ const forecast = (latitude, longitude, cb) => {
       });
     }
   });
-};
+}
 
 module.exports = forecast;
