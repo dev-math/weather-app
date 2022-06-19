@@ -15,19 +15,19 @@
   <div class="img-banner"></div>
   <main>
     <div class="content">
-      <h1>Cairo</h1>
+      <h1>{{ location.region }}</h1>
       <div class="forecast-details">
-        <h2>29°<span>C</span></h2>
+        <h2>{{ temperature }}°<span>C</span></h2>
         <ul>
-          <li>Precipitation: 60%</li>
-          <li>Humidity: 88%</li>
-          <li>Wind: 6 km/h</li>
+          <li>Feels like: {{ feelslike }}°C</li>
+          <li>Humidity: {{ humidity }}%</li>
+          <li>Wind: {{ wind }} km/h</li>
         </ul>
       </div>
     </div>
     <footer>
-      <p>Isolated thunderstorms</p>
-      <p>Friday, Sep 3, 2021</p>
+      <p>{{ description }}</p>
+      <p>{{ date }}</p>
     </footer>
   </main>
 
