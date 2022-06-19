@@ -1,4 +1,6 @@
 # Weather App
+> See the weather forecast for your current location
+
 Developed for practice (javascript) purposes only (non-responsive site).
 
 Screenshot: 
