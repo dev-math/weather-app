@@ -15,8 +15,8 @@ Put the API Keys in the .env file
 ### Installation
 
 ```sh
-$ git clone https://github.com/ORG/PROJECT.git
-$ cd PROJECT
+$ git clone https://github.com/dev-math/weather-app.git
+$ cd weather-app
 $ npm i
 ```
 
